@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource("posts", PostController::class);
+
+Route::post('/posts/{post}/comments', [CommentController::class,'store'])->name('comments.store');
+
+
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/about', function () {
+    return view('about');
 });
 
 Route::get('/dashboard', function () {

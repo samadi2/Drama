@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.titre{
+    padding-left: 10% ;
+}
+.par{
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    padding-left: 8px;
+}
+.btn{
+    align-items: center;
+}
+.para{
+    font-size: 28px;
+    padding-left: 15px;
+}
+.ici{
+    width: 5%;
+    height: 10%;
+    font-size: 32px;
+    color: black;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-left: 10px;
+
+}
+.smak{
+    background-image: url(/public/img/fde.jpg);
+}
+
+.image{
+    margin-top: 22px;
+    padding-left: 50px;
+
+}
+.sec{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    border: 2px solid #252525;
+    border-radius: 10px;
+    background: rgba(0,0, 0, 0.5);
+}
+.title, .tit, .ima, .cont, .inp{
+    color: white;
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -10,33 +11,28 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function __construct()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $this->middleware('auth');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,Post $post)
     {
-        //
-    }
+        request()->validate([
+            'content' => 'required|max:255'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comment $comment)
-    {
-        //
+        $comment = new Comment();
+        $comment->content = request('content');
+        $comment->user_id = auth()->user()->id;
+
+
+        $post->comments()->save($comment);
+
+        return redirect()->route('posts.show','');
     }
 
     /**
