@@ -2,55 +2,222 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.titre{
-    padding-left: 10% ;
-}
-.par{
-
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 24px;
-    padding-left: 8px;
-}
-.btn{
-    align-items: center;
-}
-.para{
-    font-size: 28px;
-    padding-left: 15px;
-}
-.ici{
-    width: 5%;
-    height: 10%;
-    font-size: 32px;
-    color: black;
-    padding-left: 10px;
-    margin-top: 5px;
-    margin-left: 10px;
-
-}
-.smak{
-    background-image: url(/public/img/fde.jpg);
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    text-decoration: none;
+    list-style: none;
+  }
+  
+  @font-face {
+    font-family: 'Winter Coffee';
+    src: url(../fonts/WinterCoffee.ttf);
+    font-family: 'Jersey M54';
+    src: url(../fonts/JerseyM54.ttf);
 }
 
-.image{
-    margin-top: 22px;
-    padding-left: 50px;
-
+h1,h2,h3,h4,h5{
+  font-family: 'Winter Coffee';
+  font-size: 32px;
 }
-.sec{
+p{
+  font-family: 'Jersey M54';
+}
+  .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 4px 20px hsla(207, 24%, 35%, 0.1);
+    background-color: #0ea5e9;
+    z-index: 1;
+  }
+  
+  nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
-    border: 2px solid #252525;
-    border-radius: 10px;
-    background: rgba(0,0, 0, 0.5);
+    padding: 20px 30px;
+  }
+  
+  .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .logo a span {
+    color: #8739fa;
+  }
+  
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .menu a {
+    display: block;
+    padding: 7px 15px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: 0.2s all ease-in-out;
+    color: #fff;
+  }
+  
+  .menu:hover a {
+    opacity: 0.4;
+  }
+  
+  .menu a:hover {
+    opacity: 1;
+    color: #fff;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  #menu-toggle {
+    display: none;
+  }
+  
+  #menu-toggle:checked ~ .menu {
+    transform: scale(1, 1);
+  }
+  
+ 
+  
+
+.post {
+    display: flex;
+    gap: 2rem;
 }
-.title, .tit, .ima, .cont, .inp{
-    color: white;
+
+.acceuil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+/* width:fit-content ;
+margin-left:auto;
+margin-right: auto;
+padding: 40px; */
+font-size: xx-large; 
+height: 90vh; 
 }
+.bienv{
+/* From https://css.glass */
+background: rgba(14, 165, 233, 0.4);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 5px solid rgba(14, 165, 233, 1);
+  text-align: center;
+}
+
+.corps{
+    background: url(../../public/img/fond.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer{
+  text-align: center;
+  background-color: #0ea5e9;
+  height: 5vh;
+}
+
+
+.imgi{
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+
+.imag{
+  padding: 20px;
+}
+
+@media only screen and (max-width:1280px) {
+    .post{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .voir{
+        display: flex;
+        flex-direction: column;
+    }
+    .imag{
+        width: 100%;
+    }
+    .comm{
+        width: 100%;
+    }
+    .menu {
+        flex-direction: column;
+        background-color: #0ea5e9 ;
+        align-items: start;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: transform 0.3s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      }
+    
+      .menu a {
+        margin-left: 12px;
+      }
+    
+      .menu li {
+        margin-bottom: 10px;
+      }
+    
+      .menu-icon {
+        display: block;
+        color: #fff;
+        font-size: 28px;
+        cursor: pointer;
+      }
+}
+
+
+/* histoire */
+
+.hist{
+  display: flex;
+  flex-direction: row;
+}
+.hist1{
+  /* From https://css.glass */
+  background: rgba(14, 165, 233, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 5px solid rgba(14, 165, 233, 1);
+  text-align: center;
+  font-size: large;
+  padding-top: 50px;
+}
+.hist2{
+  margin-top: 25px;
+}
+
+/* register */
+
+.inscr{
+  background-color: #15172b;
+  border-radius: 20px;
+  height: 500px;
+  padding: 20px;
+  width: 320px;
+}
+

@@ -18,6 +18,15 @@ class Post extends Model
         });
     }
 
+    public function isLikedByLoggedInUser() {
+        return $this->likes->where('user_id', auth()->user()->id)->isEmpty() ? false : 
+        true;
+    }
+    public function isDislikedByLoggedInUser() {
+        return $this->dislikes->where('user_id', auth()->user()->id)->isEmpty() ? false : 
+        true;
+    }
+
     
     public function user()
     {
@@ -28,4 +37,13 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function dislikes()
+    {
+        return $this->hasMany(Dislike::class);
+    }
+
 }

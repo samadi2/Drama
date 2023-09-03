@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Like;
+use App\Models\Dislike;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Policies\PostPolicy;
 
@@ -18,12 +21,70 @@ class PostController extends Controller
         //On récupère tous les Post
         $posts = Post::with('user')->latest()->get();
 
-        
-        
-
+        $posts = Post::paginate(3);
         // On transmet les Post à la vue
         return view("posts.index", compact("posts"));
+
     }
+
+    public function like(): JsonResponse
+    {
+        $post = Post::find(request()->id);
+
+        if ($post->isLikedByLoggedInUser()) {
+            $res = Like::where([
+                'user_id' => auth()->user()->id,
+                'post_id' => request()->id
+            ])->delete();
+
+            if ($res) {
+                return response()->json([
+                    'count' => Post::find(request()->id)->likes->count()
+                ]);
+            }
+
+        } else {
+            $like = new Like();
+
+            $like->user_id = auth()->user()->id;
+            $like->post_id = request()->id;
+
+            $like->save();
+
+            return response()->json([
+                'count' => Post::find(request()->id)->likes->count()
+            ]);
+        }
+    }    
+    public function dislike(): JsonResponse
+    {
+        $post = Post::find(request()->id);
+
+        if ($post->isDislikedByLoggedInUser()) {
+            $res = Dislike::where([
+                'user_id' => auth()->user()->id,
+                'post_id' => request()->id
+            ])->delete();
+
+            if ($res) {
+                return response()->json([
+                    'count' => Post::find(request()->id)->dislikes->count()
+                ]);
+            }
+
+        } else {
+            $dislike = new Dislike();
+
+            $dislike->user_id = auth()->user()->id;
+            $dislike->post_id = request()->id;
+
+            $dislike->save();
+
+            return response()->json([
+                'count' => Post::find(request()->id)->dislikes->count()
+            ]);
+        }
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -128,6 +189,20 @@ class PostController extends Controller
         $this->authorize('delete', $post);
         // On supprime l'image existant
         Storage::delete($post->picture);
+
+
+        // On récupère tous les likes du post
+        $likes = Like::where('post_id', $post->id)->get();
+        // On supprime tous les likes
+        foreach ($likes as $like) {
+            $like->delete();
+        }
+        // On récupère tous les dislikes du post
+        $dislikes = Dislike::where('post_id', $post->id)->get();
+        // On supprime tous les dislikes
+        foreach ($dislikes as $dislike) {
+            $dislike->delete();
+        }
     
         // On les informations du $post de la table "posts"
         $post->delete();

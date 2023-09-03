@@ -13,6 +13,9 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="{{ asset('img/icon-tv.png') }}">
+        <script src="https://kit.fontawesome.com/acd3312c39.js" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"  rel="stylesheet" />
+      
 
 
         <!-- Scripts -->
@@ -36,8 +39,9 @@
             @yield('content')
             </main>
         </div>
-        <footer class="w-full border-t bg-white pb-12">
-           
-        </footer>
+        <footer class="footer" >
+            <h2>Copyright©,by Satourdine</h2>
+        </footer>	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     </body>
 </html>

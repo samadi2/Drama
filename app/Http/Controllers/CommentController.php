@@ -19,7 +19,7 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,Post $post)
+    public function store(Post $post)
     {
         request()->validate([
             'content' => 'required|max:255'
